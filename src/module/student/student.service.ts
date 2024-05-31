@@ -17,5 +17,6 @@ const getSingleStudents = async (id:string) => {
 
 export const StudentServices = {
   createStudentIntoDB,
-  getAllStudents
+  getAllStudents,
+  getSingleStudents
 };
