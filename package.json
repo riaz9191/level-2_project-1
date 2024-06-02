@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/server.js",
   "scripts": {
-    "build":"tsc",
+    "build": "tsc",
     "start:prod": "node ./dist/server.js",
     "start:dev": "ts-node-dev --respawn --transpile-only ./src/server.ts ",
     "lint": "npx eslint .",
@@ -32,6 +32,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.4.0"
+    "mongoose": "^8.4.0",
+    "zod": "^3.23.8"
   }
 }

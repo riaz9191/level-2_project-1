@@ -1,17 +1,36 @@
 import { Request, Response } from 'express';
 import { StudentServices } from './student.service';
+import { error } from 'console';
+import { z } from 'zod';
+import studentValidationSchema from './studnet.validation';
 
 const createStudent = async (req: Request, res: Response) => {
   try {
+
+    //creating schema validation using zod
+    // const studentValidationSchema = z.object({
+    //   id:z.string(),
+    //   name:z.string().max(20,{message:"first name cant be more then 20 char"})
+    // })
+
+
     const { student: studentData } = req.body;
-    const result = await StudentServices.createStudentIntoDB(studentData);
+
+    //data validation using zod
+    const zodParsedData = studentValidationSchema.parse(studentData)
+
+    const result = await StudentServices.createStudentIntoDB(zodParsedData);
     res.status(200).json({
       success: true,
       message: 'Student is created successfully',
       data: result,
     });
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    res.status(500).json({
+      success: true,
+      message: 'Something went wrong',
+      error: err,
+    });
   }
 };
 
