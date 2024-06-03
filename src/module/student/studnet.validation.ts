@@ -20,6 +20,7 @@ const userNameSchema = z.object({
   // Define Zod schema for Student
   const studentValidationSchema = z.object({
     id: z.string().nonempty('Student ID is required'),
+    password:z.string().max(20),
     name: userNameSchema,
     gender: z.enum(['male', 'female']).refine(val => ['male', 'female'].includes(val), {
       message: 'Gender is required',
@@ -35,6 +36,7 @@ const userNameSchema = z.object({
     isActive: z.enum(['active', 'inactive']).refine(val => ['active', 'inactive'].includes(val), {
       message: 'Status is required',
     }),
+    isDeleted:z.boolean()
   });
   
   export default studentValidationSchema
